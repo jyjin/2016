@@ -1,0 +1,205 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: "microsoft yahei", "Segoe UI", sans-serif;
+}
+ul,
+p,
+h1,
+h2,
+h3,
+h4 {
+  padding: 0;
+  margin: 0;
+}
+a {
+  outline: none;
+}
+li {
+  list-style: none;
+}
+.clearfix:after,
+.clx:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.tl {
+  text-align: left;
+}
+.tc {
+  text-align: center;
+}
+.tr {
+  text-align: right;
+}
+.underline {
+  text-decoration: underline;
+}
+.nodec {
+  text-decoration: none;
+}
+.ell {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.cff {
+  color: #fff;
+}
+.c00 {
+  color: #000;
+}
+.cee {
+  color: #eee;
+}
+.c33 {
+  color: #333;
+}
+.c66 {
+  color: #666666;
+}
+.c99 {
+  color: #999999;
+}
+.c93 {
+  color: #939393;
+}
+.cblue {
+  color: #00b7ee;
+}
+.corange {
+  color: #f39800;
+}
+.pr {
+  position: relative;
+}
+.pa {
+  position: absolute;
+}
+.pf {
+  position: fixed;
+}
+.ml10 {
+  margin-left: 10px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+.dn {
+  display: none;
+}
+.block {
+  display: block;
+}
+.iblock {
+  display: inline-block;
+}
+.hide {
+  visibility: hidden;
+}
+.input {
+  border: none;
+  background: none;
+  outline: none;
+  display: inline-block;
+}
+.file,
+.zero {
+  display: inline-block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 0;
+  outline: none;
+}
+.border {
+  border: 1px solid #666666;
+  border-bottom: 1px solid #2d2d2d;
+}
+.border53 {
+  border: 1px solid #535353;
+}
+.border33 {
+  border: 1px solid #333;
+}
+.borderTop {
+  border-top: 1px solid #535353;
+}
+.borderBottom {
+  border-bottom: 1px solid #2d2d2d;
+}
+.bgff {
+  background: #fff;
+}
+.bg00 {
+  background: #000;
+}
+.bgd2 {
+  background: #d2d2d2;
+}
+.bg33 {
+  background: #333;
+}
+.bg44 {
+  background: #444;
+}
+.pointer:hover {
+  cursor: pointer;
+}
+.default:hover {
+  cursor: default;
+}
+.vcenter {
+  text-align: center;
+}
+.vcenter:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.vblock {
+  display: inline-block;
+  vertical-align: middle;
+}
+.table {
+  table-layout: fixed;
+  width: 100%;
+  background: #333;
+  border-collapse: collapse;
+  text-align: center;
+}
+.table .thead {
+  border: solid #282828;
+  border-width: 0 0 1px 0;
+}
+.table th,
+.table td {
+  padding: 0 5px;
+}
+.table .tbody.select,
+.table .tbody:hover {
+  background: #535353;
+  cursor: pointer;
+}
+button {
+  display: inline-block;
+  width: 200px;
+  height: 30px;
+  color: #fff;
+  background: #00b7ee;
+}

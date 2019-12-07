@@ -1,0 +1,26 @@
+@@import "color";
+
+/**
+*放大
+*/
+.scale(@param) {
+  transform: scale(@param,@param);
+  transform-origin: center;
+  transition: all .5s ease-out;
+
+  -o-transform: scale(@param,@param);
+  -o-transform-origin: center;
+  -o-transition: all .5s ease-out;
+
+  -ms-transform: scale(@param,@param);
+  -ms-transform-origin: center;
+  -ms-transition: all .5s ease-out;
+
+  -moz-transform: scale(@param,@param);
+  -moz-transform-origin: center;
+  -moz-transition: all .5s ease-out;
+
+  -webkit-transform: scale(@param,@param);
+  -webkit-transform-origin: center;
+  -webkit-transition: all .5s ease-out;
+}

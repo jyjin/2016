@@ -1,0 +1,17 @@
+{
+  "name": "scroll-demo",
+  "version": "1.0.0",
+  "description": "test scroll effictive",
+  "main": "app.js",
+  "scripts": {
+    "test": "scroll"
+  },
+  "dependencies": {
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-less": "^1.1.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "jit-grunt": "^0.9.1"
+  },
+  "author": "jyjin",
+  "license": "ISC"
+}

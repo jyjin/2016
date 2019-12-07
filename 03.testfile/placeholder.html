@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>placeholder 样式</title>
+    <style>
+        body{
+          padding:200px;
+          text-align: center;
+        }
+        .text-item::-webkit-input-placeholder {
+            color: #fff;
+            background: #00a0e9;
+            text-indent: 20px;
+        }
+        .text-item::-moz-placeholder {
+            color: green;
+        }
+        /* firefox 19+ */
+        .text-item:-ms-input-placeholder {
+            color: blue;
+        }
+        /* ie */
+        .text-item:-moz-placeholder {
+            color: origin;
+        }
+    </style>
+</head>
+
+<body>
+    <input class="text-item" type="text" placeholder="请输入你的性取向">
+</body>
+
+</html>

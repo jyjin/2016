@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Text geometry test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+        }
+
+        #canvas {
+            /*margin: 100px auto;*/
+            width: 800px;
+            height: 500px;
+        }
+
+        #control {
+            width: 300px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        input{
+            display: inline-block;
+            width: 30px;
+        }
+
+        .m-input{
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas"></div>
+    <!-- <div id="control">
+        <div>
+            camera:
+            <input type="text" data-name='fov' value="60" placeholder="fov">
+            <input type="text" data-name='rate' placeholder="rate">
+            <input type="text" data-name='near' placeholder="near">
+            <input type="text" data-name='far' placeholder="far">
+        </div>
+        <div>
+            renderer:
+            <input type="text" data-name='width' value="60" placeholder="width">
+            <input type="text" data-name='height' placeholder="height">
+            <input type="text" data-name='backgroundColor' class="m-input" placeholder="backgroundColor">
+        </div>
+    </div> -->
+    <script src="./lib/three.js" charset="utf-8"></script>
+    <script src="./lib/stats.min.js" charset="utf-8"></script>
+    <script src="./lib/EditorControls.js" charset="utf-8"></script>
+    <script src="./lib/dat.gui.min.js" charset="utf-8"></script>
+    <script src="./js/lightshadow.js" charset="utf-8"></script>
+</body>
+
+</html>

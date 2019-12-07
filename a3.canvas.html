@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test Html5</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        #canvas {
+            border: 2px solid #333;
+        }
+
+        .img {
+            width: 1200px;
+            height: 800px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas id="canvas">你的浏览器不支持canvas!!!</canvas>
+    </div>
+</body>
+
+<script type="text/javascript">
+    window.onload = function() {
+        var canvas = document.getElementById("canvas"); //获取canvas
+        canvas.width = 1200;
+        canvas.height = 600;
+        var context = canvas.getContext('2d'); //获取2d上下文绘图环境
+
+        var img = new Image()
+        img.crossOrigin = '';
+        img.src = 'http://u231.ufqn.easyar.cn/image/2016/09/27/12/6bd6e023c5ef4385b16b5e864830ac76-cloud.png';
+
+        img.onload = function() {
+            context.drawImage(img, 0, 0, 800, 500);
+
+            var imageData = context.getImageData(0, 0, 100, 100);
+            var data = imageData.data;
+            console.log(data);
+            /*for (var i = 0; i < data.length; i+=4) {
+            	red = data[i];
+            	green = data[i+1];
+            	blue = data[i+2];
+            	alpha = data[i+3];
+            	average = Math.floor((red+green+blue)/3);
+            	data[i]   = average;
+            	data[i+1] = average;
+            	data[i+2] = average;
+             }
+             imageData.data = data;
+             context.putImageData(imageData,0,0);
+             */
+        };
+    }
+</script>
+
+</html>

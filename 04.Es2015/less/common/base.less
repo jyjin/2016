@@ -1,0 +1,277 @@
+// 基本样式还原------------------------------------------------------
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: "microsoft yahei", "Segoe UI", sans-serif;
+}
+ul, p, h1, h2, h3, h4 {
+  padding: 0;
+  margin: 0;
+}
+a{
+  outline: none;
+}
+li {
+  list-style: none;
+}
+
+// 浮动------------------------------------------------------
+.clearfix,
+.clx{
+  &:after{
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+// 文本------------------------------------------------------
+.tl{
+  text-align: left;
+}
+.tc{
+  text-align: center;
+}
+.tr{
+  text-align: right;
+}
+.underline{
+  text-decoration: underline;
+}
+.nodec{
+  text-decoration: none;
+}
+.ell {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// 颜色------------------------------------------------------
+.cff{
+  color: @white;
+}
+.c00{
+  color:@black;
+}
+.cee{
+  color: @ee;
+}
+.c33{
+  color:@33;
+}
+.c66{
+  color:@66;
+}
+.c99{
+  color:@99;
+}
+.c93{
+  color:@93;
+}
+.cblue{
+  color:@blue;
+}
+.corange{
+  color:@orange;
+}
+
+// 位置------------------------------------------------------
+.pr{
+  position: relative;
+}
+.pa{
+  position: absolute;
+}
+.pf{
+  position: fixed;
+}
+.ml(@d:10px){
+  margin-left: @d;
+}
+.mt(@d:10px){
+  margin-top: @d;
+}
+.mr(@d:10px){
+  margin-right: @d;
+}
+.mb(@d:10px){
+  margin-bottom: @d;
+}
+.ml10{
+  margin-left: 10px;
+}
+.mt10{
+  margin-top: 10px;
+}
+.mb10{
+  margin-bottom: 10px;
+}
+.mr10{
+  margin-right: 10px;
+}
+
+// 显示------------------------------------------------------
+.dn {
+  display: none;
+}
+.block{
+  display: block;
+}
+.iblock{
+  display: inline-block;
+}
+.hide{
+  visibility: hidden;
+}
+.input{
+  border:none;
+  background: none;
+  outline: none;
+  .iblock;
+}
+.file,
+.zero{
+  display: inline-block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border:0;
+  outline: none;
+}
+
+// border------------------------------------------------------
+.border{
+    border: 1px solid @66;
+    border-bottom: 1px solid @2d;
+}
+.border(@color:@53){
+  border:1px solid @color;
+}
+.border53{
+  border:1px solid @53;
+}
+.border33{
+  border:1px solid @33;
+}
+.borderTop{
+  border-top: 1px solid @53;
+}
+.borderTop(@color:@53){
+  border-top: 1px solid @color;
+}
+.borderBottom(@color:@2d){
+  border-bottom: 1px solid @color;
+}
+.borderBottom{
+  border-bottom: 1px solid @2d;
+}
+.radius(@width:2px){
+  border-radius: @width;
+}
+
+// 背景------------------------------------------------------
+.bgff{
+  background: @white;
+}
+.bg(@color:@44){
+  background: @color;
+}
+.bg00{
+  background: @black;
+}
+.bgd2{
+  background: @d2;
+}
+.bg33{
+  background: @33;
+}
+.bg44{
+  background: @44;
+}
+.png(@name){
+  background: url('/image/@{name}.png?__sprite') no-repeat;
+}
+.jpg(@name){
+  background: url('/image/@{name}.jpg?__sprite') no-repeat;
+}
+.gif(@name){
+  background: url('/image/@{name}.gif?__sprite') no-repeat;
+}
+
+// 手势------------------------------------------------------
+.pointer{
+  &:hover{
+    cursor:pointer;
+  }
+}
+.default{
+  &:hover{
+    cursor:default;
+  }
+}
+
+// 垂直居中------------------------------------------------------
+.vcenter {
+  .tc;
+}
+.vcenter:before {
+  content: '';
+  .iblock;
+  height: 100%;
+  vertical-align: middle;
+}
+.vblock {
+  .iblock;
+  vertical-align: middle;
+}
+
+// 大小------------------------------------------------------
+.cube(@width) {
+  width: @width;
+  height: @width;
+}
+.vheight(@height) {
+  height: @height;
+  line-height: @height;
+}
+
+// 动画------------------------------------------------------
+.ease(@time:0.3s){
+  transition: all @time ease;
+  -o-transition: all @time ease;
+  -ms-transition: all @time ease;
+  -moz-transition: all @time ease;
+  -webkit-transition: all @time ease;
+}
+
+.linear(@time:0.3s){
+  transition: all @time linear;
+  -o-transition: all @time linear;
+  -ms-transition: all @time linear;
+  -moz-transition: all @time linear;
+  -webkit-transition: all @time linear;
+}
+
+// 按钮------------------------------------------------------
+.btnStyle(@width,@height) {
+  .iblock;
+  .radius();
+  .vheight(@height);
+  .bgd2;
+  width: @width;
+  color: @black;
+  .tc;
+  text-decoration: none;
+  .ease(0.3s);
+  &:hover{
+    .bgff;
+  }
+}

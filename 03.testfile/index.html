@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #eee;
+        }
+
+        .canScroll {
+            width: 1000px;
+            height: 500px;
+            overflow: auto;
+        }
+
+        #iframepage {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="canScroll">
+        <div class="originHeight">
+            <iframe src="frame.html" id="iframepage" name="iframepage" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" onLoad="setHeight"></iframe>
+        </div>
+    </div>
+    <script src="http://192.168.6.8:7878/library/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" language="javascript">
+        function setHeight() {
+          var h = window.frames['iframepage'].getHeight() + 'px';
+          //或 var h = window.frames.iframepage.window.getHeight()+'px';
+
+          console.log(h)
+
+          $('#iframepage').css({
+              'height': h
+          })
+        }
+        $(function(){
+          //模拟 frame loaded
+          setTimeout(function(){
+            setHeight();
+          },3000)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<!-- ng-app 网页加载完毕自动引导初始化应用程序-->
+<div ng-app="myApp" ng-controller="myCtrl">
+    <input type="text" name="name" value="" ng-model="name" >
+    名字:{{name}}
+</div>
+<!-- ng-init 出现的ng-app指定的元素-->
+<div ng-app="" ng-init="firstName='Steven'">
+  <p>
+    在输入框中尝试输入：
+  </p>
+  <p>
+    姓名 <input type="text" name="name" value="" ng-model="firstName">
+  </p>
+  <p>
+    你输入的是：{{firstName}}
+  </p>
+</div>
+<!-- ng-repeat 循环 -->
+<div ng-app="" ng-init="names=['Steven','Joany','Tom']">
+  <p>
+    ng-repeat循环数组
+  </p>
+  <ul>
+    <li ng-repeat="x in names">
+      {{x}}
+    </li>
+  </ul>
+</div>
+<script src="./script/library/angular.min.js"></script>
+<script src="./script/app/app.js"></script>
+</body>
+</html>

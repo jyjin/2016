@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+
+<div id="T"></div>
+<img src="" id="img" />
+
+meta: <input type="file" id="file" />
+
+image: <input type="file" id="image" />
+
+<input type="button" value="add" id="add" />
+
+<script type="text/javascript" src="/libraries/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+	var image = '',
+		txt = '';
+	$('#add').click(function(){
+		var p = {};
+		p.token = '5feaD6OKeYDppqa6q7ZV97Tx7AMUUF4Y9OCUJASWhBwoWO/3Z1JdB/nul4dPhSXe';
+		p.image = image;
+		p.width = '1.1';
+		p.name = 'photo new';
+		p.meta = txt;
+		//$.post('http://sdk.easyar.com/image/target/1', p, function(data){
+		$.post('http://192.168.2.105:8080/image/target/15', p, function(data){
+			console.info(data)
+		});
+	});
+/*
+	$.getJSON('http://sdk.easyar.cn/image/target/15/a995e47a-99fc-45e8-93fd-ac54b8835dd3', {token: 'effb/vATHiJn1Nu9UQyxLsfFHag6Z+r68NuwnZslrQs3krufkbNzzl/OqsQF/dP9'}, function(data){
+		console.info(data);
+		$('#img').attr('src', 'data:image/jpeg;base64,'+ data.result.trackingImage);
+	});
+*/
+	$('#file').change(function(){
+		var reader = new FileReader();
+		reader.onloadend = function(e) {
+			console.info(e.target.result);
+			txt = e.target.result;
+		};
+		reader.readAsText(document.querySelector('#file').files[0]); 
+		//reader.readAsBinaryString(document.querySelector('#file').files[0]);
+	});
+
+	$('#image').change(function(){
+		var reader = new FileReader();
+		reader.onloadend = function(e) {
+			//console.info(e.target.result);
+			image = e.target.result;
+		};
+		reader.readAsDataURL(document.querySelector('#image').files[0]);
+	});
+	/*
+	var param = {};
+	param.token = 'effb/vATHiJn1Nu9UQyxLsfFHag6Z+r68NuwnZslrQs3krufkbNzzl/OqsQF/dP9';
+	param.title = 'AAA';
+	param.bundle = 'fddd';
+	$.post('http://sdk.easyar.cn/app/item', param, function(data){
+		console.info(data)
+	});
+*/
+</script>
+
+
+</body>
+</html>

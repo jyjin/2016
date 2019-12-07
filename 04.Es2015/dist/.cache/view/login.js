@@ -1,0 +1,2 @@
+/*TMODJS:{"version":1,"md5":"80964192c63a7b1e3b39a80df1d0929a"}*/
+template('view/login','<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> <title>登录</title> </head> <body> </body> </html> ');

@@ -1,0 +1,292 @@
+<!-- author: jyjin   ==   date: 2018.05.22 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <title>D3 Demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #00a0e9;
+        }
+
+        svg {
+            display: block;
+            margin: 40px auto;
+        }
+
+        p {
+            margin: 40px auto 0;
+            width: 400px;
+            height: 30px;
+            color: red;
+            font-size: 16px;
+            line-height: 30px;
+            background: white;
+            text-align: center;
+        }
+
+        code {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            background: #eee;
+            width: 180px;
+            white-space: pre-wrap;
+            padding: 10px 5px;
+            border-radius: 5px;
+            max-height: 600px;
+            height: 600px;
+            border: 1px solid #3cc372;
+        }
+
+        #code {
+            left: auto;
+            right: 10px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <code>要求:
+1.使用D3中的数据
+2.json文件中给的坐标画成圆圈，使圆圈半径与总交易量（amount）成正比
+3.将交易描绘为线，线段粗细正比双方交易量（amount）
+4.交互：
+    a.悬停在圆上，突出圆和连接到它的所有线段（通过使其他圆和线变成透明来实现）
+    b.悬停在圆上，显示出它的交易总额和以及与其连接点个数这两个数据信息
+    </code>
+    <code id='code'></code>
+    <p>鼠标摸摸圆圈试试</p>
+</body>
+<script>
+
+    var json = {
+        "nodes": [
+            {
+                "id": "site01",
+                "x": 317.5,
+                "y": 282.5
+            },
+            {
+                "id": "site02",
+                "x": 112,
+                "y": 47
+            },
+            {
+                "id": "site07",
+                "x": 69.5,
+                "y": 287
+            },
+            {
+                "id": "site09",
+                "x": 424.5,
+                "y": 99.5
+            },
+            {
+                "id": "site05",
+                "x": 432,
+                "y": 467
+            },
+            {
+                "id": "site10",
+                "x": 567,
+                "y": 482
+            },
+            {
+                "id": "site03",
+                "x": 592,
+                "y": 164.5
+            },
+            {
+                "id": "site08",
+                "x": 782,
+                "y": 397
+            },
+            {
+                "id": "site04",
+                "x": 829.5,
+                "y": 262
+            },
+            {
+                "id": "site06",
+                "x": 902,
+                "y": 169.5
+            }
+        ],
+        "links": [
+            { "node01": "site01", "node02": "site08", "amount": 170 },
+            { "node01": "site01", "node02": "site02", "amount": 300 },
+            { "node01": "site01", "node02": "site03", "amount": 70 },
+            { "node01": "site01", "node02": "site07", "amount": 50 },
+            { "node01": "site01", "node02": "site09", "amount": 210 },
+            { "node01": "site01", "node02": "site10", "amount": 350 },
+
+            { "node01": "site02", "node02": "site03", "amount": 1000 },
+            { "node01": "site02", "node02": "site04", "amount": 530 },
+            { "node01": "site02", "node02": "site05", "amount": 610 },
+            { "node01": "site02", "node02": "site08", "amount": 70 },
+            { "node01": "site02", "node02": "site09", "amount": 80 },
+
+            { "node01": "site03", "node02": "site06", "amount": 80 },
+            { "node01": "site03", "node02": "site07", "amount": 130 },
+            { "node01": "site03", "node02": "site09", "amount": 110 },
+            { "node01": "site03", "node02": "site10", "amount": 120 },
+            { "node01": "site03", "node02": "site04", "amount": 140 },
+
+            { "node01": "site04", "node02": "site01", "amount": 50 },
+            { "node01": "site04", "node02": "site05", "amount": 200 },
+            { "node01": "site04", "node02": "site07", "amount": 210 },
+            { "node01": "site04", "node02": "site09", "amount": 60 },
+            { "node01": "site04", "node02": "site10", "amount": 90 },
+
+            { "node01": "site05", "node02": "site06", "amount": 110 },
+            { "node01": "site05", "node02": "site07", "amount": 150 },
+            { "node01": "site05", "node02": "site08", "amount": 100 },
+            { "node01": "site05", "node02": "site09", "amount": 130 },
+            { "node01": "site05", "node02": "site10", "amount": 140 },
+
+            { "node01": "site06", "node02": "site02", "amount": 80 },
+            { "node01": "site06", "node02": "site07", "amount": 60 },
+            { "node01": "site06", "node02": "site04", "amount": 270 },
+            { "node01": "site06", "node02": "site09", "amount": 50 },
+            { "node01": "site06", "node02": "site10", "amount": 80 }
+        ]
+    }
+
+    $('#code').html(JSON.stringify(json, null, 2))
+
+    function eventHandler() {
+        $('circle').on('mouseover', function (e) {
+            var t = $(e.currentTarget)
+            $('p').html('节点:' + t.attr('id') + ' 坐标:(' + t.attr('cx') + ',' + t.attr('cy') + ')' + ' 交易总额:' + t.attr('rate'))
+        }).on('mouseout', function (e) {
+            var t = $(e.currentTarget)
+            $('p').html('鼠标摸摸圆圈试试')
+        })
+    }
+
+    function caluData() {
+
+        // save all site name
+        var sites = []
+        json.nodes.map(function (node) {
+            if (sites.indexOf(node.id) == -1) {
+                sites.push(node.id)
+            }
+        })
+        console.log(' all site == ', sites)
+
+        // save each rate in trade
+        var siteRate = {}
+        json.links.map(function (link) {
+            for (var key in link) {
+                if (sites.indexOf(link[key]) > -1) {
+                    !siteRate[link[key]] && (siteRate[link[key]] = 0)
+                    siteRate[link[key]] += link.amount
+                }
+            }
+        })
+        console.log(' site rate == ', siteRate)
+
+        // bind rate to each node
+        json.nodes.map(function (node) {
+            for (var key in siteRate) {
+                if (key == node.id) {
+                    node.rate = siteRate[key]
+                }
+            }
+        })
+
+        // bind each point to links
+        json.links.map(function (link) {
+            for (var key in link) {
+                for (var i = 0; i < json.nodes.length; i++) {
+                    var node = json.nodes[i]
+                    if (link[key] == node.id) {
+                        link[key] = node
+                    }
+                }
+            }
+
+        })
+        console.log('new json == ', json)
+
+        return json
+    }
+
+    var json = caluData()
+
+    function drawCircile(svg) {
+        var circles = svg.selectAll("circle")
+            .data(json.nodes)
+            .enter()
+            .append("circle");
+
+        var circleAttributes = circles
+            .attr("cx", function (d) { return d.x; })
+            .attr("cy", function (d) { return d.y; })
+            .attr("r", function (d) { return d.rate / 80 })
+            .attr('id', function (d) { return d.id })
+            .attr('rate', function (d) { return d.rate })
+            .attr('stroke-opacity', '0.5')
+
+        setInterval(function () {
+            circles
+                .attr('fill', function () {
+                    return "hsl(" + Math.random() * 360 + ",100%,50%)"
+                })
+
+        }, 100)
+    }
+
+    function drawLine(svg) {
+
+        var line = svg
+            .selectAll('line')
+            .data(json.links)
+            .enter()
+            .append("line")
+            .attr("x1", function (d) {
+                return d.node01.x
+            })
+            .attr("y1", function (d) {
+                return d.node01.y
+            })
+            .attr("x2", function (d) {
+                return d.node02.x
+            })
+            .attr("y2", function (d) {
+                return d.node02.y
+            })
+            .attr("stroke-width", function (d) {
+                return d.amount / 100
+            })
+            .attr('stroke', '#0cbfce')
+            .attr('stroke-opacity', '0.5')
+    }
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", 1000)
+        .attr("height", 600)
+        .attr('class', 'svg')
+    svg.style('background', 'black')
+
+
+    drawCircile(svg)
+
+    drawLine(svg)
+
+    eventHandler()
+
+</script>
+
+</html>
